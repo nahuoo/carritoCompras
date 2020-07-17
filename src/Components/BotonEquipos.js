@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import  {ContextProductos} from './Context'
 
-const Item = styled.article`
+const Item = styled.button`
     background-color: white;
     flex-direction: row;
     max-width: 1100px;
@@ -30,20 +31,23 @@ const Item = styled.article`
         max-width: calc(25% - 1em);
     }
 `
-
 const Imagen = styled.img`
     height: 50%;
     float: center;
 `
 
+export const BotonEquipos = (props) =>{
 
-export const Articulo = (props) =>{
+    const { setFiltro, filtro } = useContext(ContextProductos)
+    const handleClick = () => {
+        setFiltro(props.productos) 
+        console.log(filtro) 
+    }
+
     return(
-        <Item>
+        <Item onClick={handleClick} >
             <Imagen src={`http://18.228.4.19:1337${props.foto}`} alt='sin foto' />
-            <h3>{props.titulo}</h3>
-            <div>{props.descripcion}</div>
+            <h2>{props.titulo}</h2>
         </Item>
     )
 }
-

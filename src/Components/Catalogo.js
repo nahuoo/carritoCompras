@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Articulo } from './Articulo'
+import { BotonEquipos } from './BotonEquipos'
 import  {ContextProductos} from './Context'
 
 const Fondo = styled.div`
@@ -17,16 +18,27 @@ const Fondo = styled.div`
     flex-wrap: wrap;
     
 `
+ 
 
 export const Catalogo = () => {
 
-    const { productosLista, isFetching } = useContext(ContextProductos)
-
+    const { productosLista, isFetching, filtro, setFiltro } = useContext(ContextProductos)
+    const handleClick = () => {
+        setFiltro(productosLista.map( equipo => equipo.productos[0]))
+    }
+    
 if ( isFetching ) { return(<div>cargando...</div>) }
         return (
-            <Fondo> 
-                {productosLista.map( producto => (<Articulo foto={producto.foto} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}
-            </Fondo>
+            <>
+                <Fondo> 
+                    <button onClick={handleClick} />
+                    {productosLista.map( equipo => (<BotonEquipos productos={equipo.productos} titulo={equipo.nombre} foto={equipo.foto.url} />))}
+                    {filtro.map( producto => (<Articulo foto={producto.fotourl} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}
+                </Fondo>
+                
+            </>
         )
-    } 
+     
+   
+} 
     

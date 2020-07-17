@@ -34,12 +34,11 @@ body {
 	line-height: 1;
 	margin-top: 120px;
 	font-family: 'Montserrat', sans-serif;
-	background: var(--mainDark);
 	@media (min-width: 480px){
-		margin-top: 90px;
+		margin-top: 0px;
 	}
 	@media (min-width: 768px){
-		margin-top: 200px;
+		margin-top: 0px;
 	}
 }
 ol, ul {
@@ -58,8 +57,8 @@ table {
 	border-spacing: 0;
 }
 @media screen and (max-width: 400px) {
-		height:100vh;
-		weight:100vw;
+		height:auto;
+		weight:auto;
 	
 }
 `
