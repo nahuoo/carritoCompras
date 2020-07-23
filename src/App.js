@@ -1,8 +1,8 @@
 import React from 'react'
-import { Catalogo } from './Components/Catalogo'
 import { ProductosProvider } from './Components/Context'
 import GlobalStyle from './Styles/Globalstyles'
 import styled from 'styled-components'
+import Tabs from './Components/Tabs'
 
 const Appheader = styled.header`
   background-color: #d1d5db;
@@ -20,10 +20,8 @@ function App() {
       <ProductosProvider>
         <GlobalStyle />
         <Appheader>
-            <Catalogo />
-          
-        </Appheader>
-        
+        <Tabs />                 
+        </Appheader>     
       </ProductosProvider>
   )}
 export default App;
