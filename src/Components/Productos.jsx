@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Articulo } from './Articulo'
 import  {ContextProductos } from './Context'
 import { Spinner } from './Spinner'
+import Typography from '@material-ui/core/Typography'
 
 
 const Fondo = styled.div`
@@ -10,6 +11,7 @@ const Fondo = styled.div`
     display: flex;
     margin: 0%;
     height: auto;
+    color: black;
     width: 90vw;
     border-radius: .5%;
     -webkit-box-shadow: -1px 0px 30px -8px rgba(0,0,0,0.75);
@@ -19,12 +21,15 @@ const Fondo = styled.div`
     flex-wrap: wrap;
 `
 
-export const Productos = () => {
-    const { isFetching, filtro } = useContext(ContextProductos)
+export const Productos = (props) => {
+    const { isFetching, filtro, equipoNombre } = useContext(ContextProductos)
 
 if ( isFetching ) { return(<div><Spinner /></div>) }
         return (
-                <Fondo>   
+                <Fondo> 
+                    <Typography variant="body2" color="textSecondary" component="p">
+                       {equipoNombre}
+                      </Typography>
                     {filtro.map( producto => (<Articulo foto={producto.fotourl} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}
                 </Fondo>       
         ) 

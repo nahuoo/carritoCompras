@@ -8,6 +8,7 @@ export const ProductosProvider = (props) => {
      const [isFetching, setIsFetching] = useState(true)
      const [filtro, setFiltro ] = useState([])
      const [indiceTabs, setIndiceTabs] = useState(0);
+     const [equipoNombre, setEquipoNombre] = useState(0);
 
      useEffect(() => {
           fetch('http://18.228.4.19:1337/equipos')
@@ -23,7 +24,9 @@ export const ProductosProvider = (props) => {
           filtro,
           setFiltro,
           indiceTabs,
-          setIndiceTabs
+          setIndiceTabs,
+          equipoNombre,
+          setEquipoNombre
      }
              return(
                   <ContextProductos.Provider value={value} >

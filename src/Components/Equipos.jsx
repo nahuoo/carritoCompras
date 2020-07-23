@@ -42,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Equipos = (props) => {
 
-    const { isFetching, setFiltro } = useContext(ContextProductos)
-    const { setIndiceTabs } = useContext(ContextProductos)
+    const { isFetching, setFiltro, setIndiceTabs, setEquipoNombre } = useContext(ContextProductos)
     const [expanded, setExpanded] = React.useState(false);
     const handleClick = () => {
         setFiltro(props.productos)
         setIndiceTabs(1)
+        setEquipoNombre(props.nombre)
     }
 const classes = useStyles();
 const handleExpandClick = () => {

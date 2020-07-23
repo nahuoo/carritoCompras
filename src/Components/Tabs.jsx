@@ -56,8 +56,10 @@ export default function FullWidthTabs() {
   const theme = useTheme();
   const { indiceTabs, setIndiceTabs } = useContext(ContextProductos)
 
-  const handleChange = (event, newValue) => {
-    setIndiceTabs(newValue);
+  const handleChange = () => {
+    if (indiceTabs === 1) {setIndiceTabs(0)}
+    else { setIndiceTabs(1)}
+    
   };
 
   const handleChangeIndex = (index) => {
