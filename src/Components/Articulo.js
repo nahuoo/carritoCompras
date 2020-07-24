@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,6 +9,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import  {ContextProductos } from './Context'
 
 const Imagen = styled.img`
     height: 50%;
@@ -44,9 +45,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 export const Articulo = (props) => {
   const classes = useStyles();
+  const [cantidad, setCantidad] = useState(0)
+  const { carrito, setCarrito } = useContext(ContextProductos)
+  const handleChange = (e) => {
+    setCantidad(cantidad+1)
+  }
 
+
+  const handleChange2 = (e) => {
+    if (cantidad !== 0 ) setCantidad(cantidad-1)
+  }
+  
+
+const handleBotton = () => {
+  if (cantidad !== 0) {carrito.push(cantidad+' '+props.titulo)}
+  console.log(carrito)
+}
   return (
     
     <Card className={classes.root}>
@@ -54,18 +71,12 @@ export const Articulo = (props) => {
             subheader={props.titulo}  
         />
        <CardActions disableSpacing>
-          <IconButton aria-label="eliminar del carrito">
+         <button onClick={handleBotton} ></button>
+          <IconButton aria-label="eliminar del carrito"onClick={handleChange2}>
             <RemoveIcon />
-          </IconButton>
-          <TextField
-          id={`cantidad${props.key}`}
-          label="Cantidad"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          />
-          <IconButton aria-label="agregar al carrito">
+           </IconButton>
+          <p> {cantidad} </p>
+          <IconButton aria-label="agregar al carrito" onClick={handleChange}>
             <AddIcon />
           </IconButton>
         </CardActions>
