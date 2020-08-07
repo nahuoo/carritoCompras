@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -8,7 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
+
 import  {ContextProductos } from './Context'
 
 const Imagen = styled.img`
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 export const Articulo = (props) => {
   const classes = useStyles();
   const [cantidad, setCantidad] = useState(0)
-  const { carrito, setCarrito } = useContext(ContextProductos)
+  const { carrito, setIndiceTabs, setBadgeItems } = useContext(ContextProductos)
   const handleChange = (e) => {
     setCantidad(cantidad+1)
   }
@@ -63,6 +63,8 @@ export const Articulo = (props) => {
 const handleBotton = () => {
   if (cantidad !== 0) {carrito.push(cantidad+' '+props.titulo)}
   console.log(carrito)
+  setIndiceTabs(1)
+  setBadgeItems(carrito.lenght)
 }
   return (
     
@@ -71,7 +73,7 @@ const handleBotton = () => {
             subheader={props.titulo}  
         />
        <CardActions disableSpacing>
-         <button onClick={handleBotton} ></button>
+         <button onClick={handleBotton} >boton</button>
           <IconButton aria-label="eliminar del carrito"onClick={handleChange2}>
             <RemoveIcon />
            </IconButton>

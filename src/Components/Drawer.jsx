@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import  {ContextProductos } from './Context'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
+import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,41 +10,35 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import StoreIcon from '@material-ui/icons/Store';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import EditAttributesIcon from '@material-ui/icons/EditAttributes';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-      },
-    list: {
+  list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
   },
-  title: {
-    flexGrow: 1,
-  },
 });
 
-export default function Drawer() {
+export default function TemporaryDrawer() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    left: false,
-  });
+  const { state, setState, carrito, setCarrito } = useContext(ContextProductos)
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
     setState({ ...state, [anchor]: open });
   };
+
+  const vaciar = () => setCarrito([])
+  var encoded = carrito.map(item => '%0A'+encodeURI(item))
+    
+  
 
   const list = (anchor) => (
     <div
@@ -52,42 +46,41 @@ export default function Drawer() {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
+      
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-          <ListItem button onClick={()=> alert('virgo')}>
-            <ListItemIcon><StoreIcon /> </ListItemIcon>
-            <ListItemText primary='Productos' />
+        {carrito.map((text) => (
+          <ListItem key={text} >
+            <ListItemIcon> <EditAttributesIcon /> </ListItemIcon>
+            <ListItemText primary={text} />
+            <Button onClick={toggleDrawer(anchor, false)}><ListItemIcon> <DeleteForeverIcon /> </ListItemIcon>Quitar</Button>
           </ListItem>
+        ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
+        {['Enviar', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem  key={text} >
+            <a  href={`https://wa.me/5492235633653/?text=${encoded}`}> evniar </a>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <ListItem button onClick={vaciar} >
+            <ListItemIcon> <MailIcon /></ListItemIcon>
+            <ListItemText primary={'vaciar carrito'} />
+       </ListItem>
     </div>
   );
 
   return (
     <div>
-      {['Left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
+          <Drawer anchor={'bottom'} open={state['bottom']} onClose={toggleDrawer('bottom', false)}>
+            {list('bottom')}
+          </Drawer> 
     </div>
   );
 }

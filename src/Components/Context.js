@@ -10,8 +10,13 @@ export const ProductosProvider = (props) => {
      const [indiceTabs, setIndiceTabs] = useState(0);
      const [equipoNombre, setEquipoNombre] = useState(0);
      const [carrito, setCarrito] = useState([])
+     const [badgeItems, setBadgeItems] = useState(0)
+     const [state, setState] = useState({
+          bottom: false,
+        });
+
      useEffect(() => {
-          fetch('http://18.228.4.19:1337/equipos')
+          fetch('http://18.228.4.19:1337/catalogos')
           .then(res => res.json())
           .then(data => {
               setProductosLista(data)
@@ -28,7 +33,11 @@ export const ProductosProvider = (props) => {
           equipoNombre,
           setEquipoNombre,
           carrito,
-          setCarrito
+          setCarrito,
+          badgeItems, 
+          setBadgeItems,
+          state,
+          setState
      }
              return(
                   <ContextProductos.Provider value={value} >

@@ -26,10 +26,11 @@ export const Catalogo = () => {
     const { productosLista, isFetching } = useContext(ContextProductos)
 
 if ( isFetching ) { return(<div><Spinner /></div>) }
+console.log(productosLista)
         return (
                 <Fondo>                    
-                  {productosLista.map((equipo) => (       
-                  <Equipos key={equipo.id} productos={equipo.productos} nombre={equipo.nombre} foto={equipo.foto.url} />
+                  {productosLista.map((equipo) => (                                     
+                  <Equipos key={equipo.equipos[0].id} productos={equipo.productos} nombre={equipo.equipos[0].nombre} descripcion={equipo.equipos[0].descripcion} foto={equipo.equipos[0].foto}  />
                   ))}                   
                 </Fondo>       
         )      

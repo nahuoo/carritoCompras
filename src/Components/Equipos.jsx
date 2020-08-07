@@ -65,16 +65,16 @@ if ( isFetching ) { return(<div><Spinner /></div>) }
                     />
                     <CardMedia
                      className={classes.media}
-                    image={`http://18.228.4.19:1337${props.foto}`}
+                    image={`http://18.228.4.19:1337${props.foto.url}`}
                     title={props.nombre}
                     />
                     <CardContent>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                       ACA VA UNA DESCRIPCION DEL EQUIPO EN LA BASE DE DATOS
+                      <Typography variant="body2" color="textSecondary" component="p">                     
                       </Typography>
                     </CardContent>
                     </CardActionArea>
                     <CardActions disableSpacing>
+                      Descripcion
                       <IconButton
                       className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
@@ -89,20 +89,7 @@ if ( isFetching ) { return(<div><Spinner /></div>) }
                      <Collapse in={expanded} timeout="auto" unmountOnExit>
                      <CardContent> 
                      <Typography paragraph>
-                   UN TEXTO MAS AMPLIADO COMO PARA HACER PRESUPUESTO
-                   A
-                   A
-                   S
-                   SS
-                   S
-                   S
-                   S
-                   SS
-                   S
-                   S
-                   S
-                   S
-                   ASAS
+                     {props.descripcion}
                    </Typography>
       
                     </CardContent>

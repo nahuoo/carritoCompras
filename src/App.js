@@ -3,6 +3,8 @@ import { ProductosProvider } from './Components/Context'
 import GlobalStyle from './Styles/Globalstyles'
 import styled from 'styled-components'
 import Tabs from './Components/Tabs'
+import {CarritoCompras} from './Components/Carrito'
+import Drawer from './Components/Drawer'
 
 const Appheader = styled.header`
   background-color: #d1d5db;
@@ -15,13 +17,15 @@ const Appheader = styled.header`
 `
 
 function App() {
-   
+  
     return ( 
       <ProductosProvider>
         <GlobalStyle />
         <Appheader>
         <Tabs />                 
-        </Appheader>     
+        </Appheader>
+        <CarritoCompras />     
+        <Drawer />
       </ProductosProvider>
   )}
-export default App;
+export default App

@@ -21,14 +21,18 @@ const Fondo = styled.div`
     flex-wrap: wrap;
 `
 
+
+
 export const Productos = (props) => {
     const { isFetching, filtro, equipoNombre } = useContext(ContextProductos)
+
+
 
 if ( isFetching ) { return(<div><Spinner /></div>) }
         return (
                 <Fondo> 
                     <Typography variant="body2" color="textSecondary" component="p">
-                       {equipoNombre}
+                       {equipoNombre}                      
                       </Typography>
                     {filtro.map( producto => (<Articulo foto={producto.fotourl} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}
                 </Fondo>       
