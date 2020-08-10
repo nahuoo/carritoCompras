@@ -30,12 +30,16 @@ export const Productos = (props) => {
 
 if ( isFetching ) { return(<div><Spinner /></div>) }
         return (
+                <>
                 <Fondo> 
-                    <Typography variant="body2" color="textSecondary" component="p">
-                       {equipoNombre}                      
-                      </Typography>
+                    <Typography variant="head" color="textPrimary" component="p">
+                        {equipoNombre}                      
+                    </Typography>
+                </Fondo>
+                <Fondo>
                     {filtro.map( producto => (<Articulo foto={producto.fotourl} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}
-                </Fondo>       
+                </Fondo>   
+                </>    
         ) 
 } 
     
