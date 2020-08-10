@@ -19,7 +19,7 @@ const Imagen = styled.img`
 const useStyles = makeStyles((theme) => ({
   root: {
     
-    width: 200,
+    
     height:300,
     marginTop: 10,
     display: 'block',
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 export const Articulo = (props) => {
   const classes = useStyles();
   const [cantidad, setCantidad] = useState(0)
-  const { carrito, setIndiceTabs, setBadgeItems } = useContext(ContextProductos)
+  const { carrito, setState, setBadgeItems } = useContext(ContextProductos)
   const handleChange = (e) => {
     setCantidad(cantidad+1)
   }
@@ -59,12 +59,13 @@ export const Articulo = (props) => {
     if (cantidad !== 0 ) setCantidad(cantidad-1)
   }
   
-
+//optimizar...
 const handleBotton = () => {
   if (cantidad !== 0) {carrito.push(cantidad+' '+props.titulo)}
   console.log(carrito)
-  setIndiceTabs(1)
   setBadgeItems(carrito.lenght)
+  setState({'bottom':true})
+  setState({'bottom':false})
 }
   return (
     
@@ -73,7 +74,7 @@ const handleBotton = () => {
             subheader={props.titulo}  
         />
        <CardActions disableSpacing>
-         <button onClick={handleBotton} >boton</button>
+         <button onClick={handleBotton}> Agregar </button>
           <IconButton aria-label="eliminar del carrito"onClick={handleChange2}>
             <RemoveIcon />
            </IconButton>
@@ -85,7 +86,6 @@ const handleBotton = () => {
         <CardContent className={classes.media}>
            <Imagen src={`http://18.228.4.19:1337${props.foto}`} alt='sin foto' />
         </CardContent>
-     
     </Card>
     
   );

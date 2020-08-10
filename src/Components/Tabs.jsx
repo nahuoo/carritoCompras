@@ -30,7 +30,7 @@ function TabPanel(props) {
     </div>
   );
 }
-//epic recursividad:
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -72,10 +72,10 @@ export default function FullWidthTabs() {
         <Tabs
           value={indiceTabs}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="secondary"
           variant="fullWidth"
-          aria-label="full width tabs example"
+          aria-label="tabs"
         >
           <Tab label="Equipos" {...a11yProps(0)} />
           <Tab label="Productos" {...a11yProps(1)} />
@@ -99,5 +99,5 @@ export default function FullWidthTabs() {
 }
 
 
-// aslñkdmalksdmaksdlaksdjalksdjalskdjlas
+
 
