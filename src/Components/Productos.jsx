@@ -4,7 +4,7 @@ import { Articulo } from './Articulo'
 import  {ContextProductos } from './Context'
 import { Spinner } from './Spinner'
 import Typography from '@material-ui/core/Typography'
-
+import {NombreApellido} from './NombreApellido'
 
 const Fondo = styled.div`
     background-color: white;
@@ -35,6 +35,7 @@ if ( isFetching ) { return(<div><Spinner /></div>) }
                     <Typography variant="head" color="textPrimary" component="p">
                         {equipoNombre}                      
                     </Typography>
+                    <NombreApellido />
                 </Fondo>
                 <Fondo>
                     {filtro.map( producto => (<Articulo foto={producto.fotourl} descripcion={producto.descripcion} titulo={producto.titulo} key={producto.id} />))}

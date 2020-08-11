@@ -11,6 +11,7 @@ export const ProductosProvider = (props) => {
      const [equipoNombre, setEquipoNombre] = useState(0);
      const [carrito, setCarrito] = useState([])
      const [badgeItems, setBadgeItems] = useState(0)
+     const [openModal, setOpenModal] = useState(false);
      const [state, setState] = useState({
           bottom: false,
         });
@@ -37,7 +38,9 @@ export const ProductosProvider = (props) => {
           badgeItems, 
           setBadgeItems,
           state,
-          setState
+          setState,
+          openModal,
+          setOpenModal,
      }
              return(
                   <ContextProductos.Provider value={value} >

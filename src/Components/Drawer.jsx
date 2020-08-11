@@ -1,19 +1,21 @@
 import React, { useContext } from 'react'
 import  {ContextProductos } from './Context'
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import BackspaceIcon from '@material-ui/icons/Backspace';
-import MailIcon from '@material-ui/icons/Mail';
-import EditAttributesIcon from '@material-ui/icons/EditAttributes';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import Button from '@material-ui/core/Button';
-import styled from 'styled-components'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import BackspaceIcon from '@material-ui/icons/Backspace'
+import MailIcon from '@material-ui/icons/Mail'
+import EditAttributesIcon from '@material-ui/icons/EditAttributes'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
+import Button from '@material-ui/core/Button'
+
+import {NombreApellido} from './NombreApellido'
+
 
 const useStyles = makeStyles({
   list: {
@@ -22,31 +24,27 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto',
   },
+  boton: {
+    color: 'red',
+}
 });
-
-const A = styled.a`
-  text-decoration: none;
-  color: red;
-
-`
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
-  const { state, setState, carrito, setCarrito } = useContext(ContextProductos)
+  const { state, setState, carrito, setCarrito, setOpenModal, setIndiceTabs } = useContext(ContextProductos)
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
+  
     setState({ ...state, [anchor]: open });
   };
 
   const vaciar = () => setCarrito([])
-
-  var encoded = carrito.map(item => '%0A'+encodeURI(item))
     
- 
+  const handleClickOpen = () => {
+    setState(false)
+    setIndiceTabs(1)
+    setOpenModal(true);
+  }; 
   //toggleDrawer(anchor, false)
   const list = (anchor) => (
     <div
@@ -58,6 +56,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        
         {carrito.map((text,index) => (
           <ListItem key={index} >
             <ListItemIcon> <EditAttributesIcon /> </ListItemIcon>
@@ -71,7 +70,10 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
-      <List>
+      <Button className={classes.boton} onClick={handleClickOpen}>
+      <ListItemIcon> <MailIcon /> </ListItemIcon>
+              Enviar pedido </Button>
+     {/* <List>
         {[''].map((text, index) => (
           <ListItem  key={text} >
             <ListItemIcon> <MailIcon /> </ListItemIcon>
@@ -80,6 +82,9 @@ export default function TemporaryDrawer() {
           </ListItem>
         ))}
       </List>
+     
+
+        */ }
       <Divider />
       <ListItem button onClick={vaciar} >
             <ListItemIcon><DeleteForeverIcon /></ListItemIcon>

@@ -74,7 +74,7 @@ if ( isFetching ) { return(<div><Spinner /></div>) }
                     </CardContent>
                     </CardActionArea>
                     <CardActions disableSpacing>
-                      Descripcion
+                      Descripción
                       <IconButton
                       className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
