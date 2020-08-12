@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import styled from 'styled-components'
 import CardActions from '@material-ui/core/CardActions'
-import  {ContextProductos } from './Context'
+import  {ContextProductos } from '../Context'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import Badge from '@material-ui/core/Badge'
 import { withStyles } from '@material-ui/core/styles'
@@ -14,7 +14,10 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 const Div = styled.div`
     position: fixed;
     bottom: 0;
-    left: 40%;
+    left: 35vw;
+    @media (min-width: 480px){
+		left: 45%;
+	}
     
 `
 

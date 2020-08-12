@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	margin-top: 120px;
+	margin-top: 0;
 	font-family: 'Montserrat', sans-serif;
 	@media (min-width: 480px){
 		margin-top: 0px;

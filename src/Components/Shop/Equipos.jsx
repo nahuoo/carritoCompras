@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import  {ContextProductos } from './Context'
-import { Spinner } from './Spinner'
+import  {ContextProductos } from '../Context'
+import { Spinner } from '../Spinner'
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';

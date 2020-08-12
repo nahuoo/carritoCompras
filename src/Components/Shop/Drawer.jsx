@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import  {ContextProductos } from './Context'
+import  {ContextProductos } from '../Context'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -14,7 +14,7 @@ import EditAttributesIcon from '@material-ui/icons/EditAttributes'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import Button from '@material-ui/core/Button'
 
-import {NombreApellido} from './NombreApellido'
+
 
 
 const useStyles = makeStyles({

@@ -1,15 +1,16 @@
-import React, {useState, useContext} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import React, {useState, useContext} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
 import styled from 'styled-components'
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import CardActions from '@material-ui/core/CardActions'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 
-import  {ContextProductos } from './Context'
+import  {ContextProductos } from '../Context'
 
 const Imagen = styled.img`
     height: 50%;
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Articulo = (props) => {
   const classes = useStyles();
+  const [color, setColor] = useState('')
   const [cantidad, setCantidad] = useState(0)
   const { carrito, setState, setBadgeItems } = useContext(ContextProductos)
   const handleChange = (e) => {
@@ -63,6 +65,7 @@ export const Articulo = (props) => {
 const handleBotton = () => {
   if (cantidad !== 0) {carrito.push(cantidad+' '+props.titulo)}
   console.log(carrito)
+  setColor('secondary')
   setBadgeItems(carrito.lenght)
   setState({'bottom':true})
   setState({'bottom':false})
@@ -74,7 +77,7 @@ const handleBotton = () => {
             subheader={props.titulo}  
         />
        <CardActions disableSpacing>
-         <button onClick={handleBotton}> Agregar </button>
+         <Button variant="outlined" color={color} onClick={handleBotton}> Agregar </Button>
           <IconButton aria-label="eliminar del carrito"onClick={handleChange2}>
             <RemoveIcon />
            </IconButton>

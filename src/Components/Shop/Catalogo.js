@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import  {ContextProductos } from './Context'
-import { Spinner } from './Spinner'
+import  {ContextProductos } from '../Context'
+import { Spinner } from '../Spinner'
 import {Equipos} from './Equipos'
 
 
@@ -10,7 +10,7 @@ const Fondo = styled.div`
     display: flex;
     margin: 0%;
     height: auto;
-    width: 90vw;
+    width: 100%;
     border-radius: .5%;
     -webkit-box-shadow: -1px 0px 30px -8px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 0px 30px -8px rgba(0,0,0,0.75);
